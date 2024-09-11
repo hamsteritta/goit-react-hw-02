@@ -1,19 +1,17 @@
-const Feedback = ({feedbackData, totalFeedback}) => {
+const Feedback = ({feedbackData, totalFeedback, positiveFeedback}) => {
 
-    const positiveFeedback = () => {
-        return Math.round((feedbackData.good / totalFeedback()) * 100);
-    }
+   
 
     return <>
-    { totalFeedback() > 0 && (
+    { positiveFeedback > 0 && (
         <ul>
         {
             Object.keys(feedbackData).map(function(key) {
                 return <li key={key}>{key}: {feedbackData[key]}</li>;
             })
         } 
-        <li>Total: {totalFeedback()}</li>
-        <li>Positive: {positiveFeedback()}%</li>   
+        <li>Total: {totalFeedback}</li>
+        <li>Positive: {positiveFeedback}%</li>   
     </ul>
     )}
     </>

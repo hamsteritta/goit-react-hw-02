@@ -2,13 +2,11 @@ import { useEffect, useState } from "react";
 import Feedback from "./Feedback/Feedback.jsx";
 import Options from "./Options/Options.jsx";
 import Notification from "./Notification/Notification.jsx";
+import Description from "./Description/Description.jsx";
 
 
 const App = () => {
-    const infoTxt = {
-        name: 'Sip Happens Café',
-        description: 'Please leave your feedback about our service by selecting one of the options below.'
-    };
+  
 
     const defaultData = {
         good: 0,
@@ -44,15 +42,17 @@ const App = () => {
         setFeedbackData(defaultData);
     }
 
+    const totalFeedbackNum = totalFeedback();
+    const positiveFeedback = Math.round((feedbackData.good / totalFeedbackNum) * 100);
+
     return (
         <>
-         <h1>{infoTxt.name}</h1>
-         <p>{infoTxt.description}</p>
-         <Feedback feedbackData={feedbackData} totalFeedback={totalFeedback} />
-         <Options feedbackData={feedbackData} changeHandle={updateFeedback} totalFeedback={totalFeedback} resetFeedback={resetFeedback} />
-         {totalFeedback() === 0 && (
-            <Notification/>
-         )}
+            <Description />
+            <Feedback feedbackData={feedbackData} totalFeedback={totalFeedbackNum} positiveFeedback={positiveFeedback} />
+            <Options feedbackData={feedbackData} changeHandle={updateFeedback} totalFeedback={totalFeedbackNum} resetFeedback={resetFeedback} />
+            {totalFeedbackNum === 0 && (
+                <Notification/>
+            )}
          </>
     )
 }
