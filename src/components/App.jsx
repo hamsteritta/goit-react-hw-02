@@ -48,7 +48,9 @@ const App = () => {
     return (
         <>
             <Description />
-            <Feedback feedbackData={feedbackData} totalFeedback={totalFeedbackNum} positiveFeedback={positiveFeedback} />
+            {totalFeedbackNum > 0 && (
+                <Feedback feedbackData={feedbackData} totalFeedback={totalFeedbackNum} positiveFeedback={positiveFeedback} />
+            )}
             <Options feedbackData={feedbackData} changeHandle={updateFeedback} totalFeedback={totalFeedbackNum} resetFeedback={resetFeedback} />
             {totalFeedbackNum === 0 && (
                 <Notification/>

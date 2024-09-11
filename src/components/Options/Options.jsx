@@ -5,7 +5,7 @@ const Options = ({feedbackData, changeHandle, totalFeedback, resetFeedback}) => 
                 return <button key={key} onClick={()=>changeHandle(key)}>{key}</button>;
             })
         } 
-        {totalFeedback() > 0 && (
+        {totalFeedback > 0 && (
             <button onClick={resetFeedback}>Reset</button>
         )}   
     </div>
